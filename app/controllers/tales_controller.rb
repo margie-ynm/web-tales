@@ -1,3 +1,5 @@
+require 'pry'
+
 class TalesController < ApplicationController
   def index
     @tales = Tale.all
@@ -8,13 +10,15 @@ class TalesController < ApplicationController
   end
 
   def new
+
+    @image = random_img
     @tale = Tale.new
   end
 
   def create
     @tale = Tale.new(tale_params)
     if @tale.save
-      redirect_to tales_path
+      redirect_to tale_path(@tale)
     else
       render :new
     end
@@ -39,6 +43,6 @@ class TalesController < ApplicationController
 
 private
   def tale_params
-    params.require(:tale).permit(:title)
+    params.require(:tale).permit(:title, :image)
   end
 end

@@ -1,7 +1,9 @@
 <%= render "layouts/errors", :object => @tale %>
-
+<img src="<%= @image %>">
 <%= form_for @tale do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title, class: 'form-control' %>
+  <%= f.label :image %>
+  <%= f.text_field :image, :value => @image %>
   <%= f.submit class: 'btn btn-primary'%>
 <% end %>
